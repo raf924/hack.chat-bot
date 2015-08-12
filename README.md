@@ -1,3 +1,12 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+#Hack.Chat Bot
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-nodejs/README.md
+Bot for [Hack.Chat](https://github.com/AndrewBelt/hack.chat)
+
+
+
+##Usage
+
+```shell
+npm install
+node ./src/main.js
+```

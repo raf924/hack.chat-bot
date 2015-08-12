@@ -1,35 +1,34 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "hack.chatbot",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
-  "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
-  ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+  "description": "Bot for Hack.Chat",
+  "main": "./src/main.js",
+  "dependencies": {
+    "google": "^1.3.0",
+    "MD5": "^1.2.2",
+    "request": "^2.60.0",
+    "wikijs": "^0.1.1",
+    "ws": "^0.7.2",
+    "figlet": "^1.1.1",
+    "mathjs": "^1.7.1",
+    "weather-js": "^1.0.2"
   },
-  "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "git+https://github.com/M4GNV5/Hack.ChatBot"
   },
-
-  "engines": {
-    "node": ">= 0.6.0",
-    "npm": ">= 1.0.0"
+  "keywords": [
+    "chat",
+    "bot"
+  ],
+  "author": {
+    "name": "Jakob Löw",
+    "email": "eragonjml@googlemail.com",
+    "url": "https://github.com/M4GNV5"
   },
-
-  "dependencies": {
-    "express": "~3.4.4"
+  "license": "4-clause BSD",
+  "bugs": {
+    "url": "https://github.com/M4GNV5/Hack.ChatBot/issues"
   },
-  "devDependencies": {},
-  "bundleDependencies": [],
-
-  "private": true,
-  "main": "server.js"
+  "homepage": "https://github.com/M4GNV5/Hack.ChatBot"
 }
