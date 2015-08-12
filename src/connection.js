@@ -26,10 +26,7 @@ function ChatConnection(url, nick, channel) {
             channel: channel
         };
         that.ws.send(JSON.stringify(joinData));
-        that.wd.send(JSON.stringify({
-            cmd: "chat",
-            text: "This is bot hosted on openshift.com thanks to raf924, all praise him (or whatever you humans do)!"
-        }))
+        that.send("This is bot hosted on openshift.com thanks to raf924, all praise him (or whatever you humans do)!");
     });
 
     this.ws.on("message", function (data, flags) {
