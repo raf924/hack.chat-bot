@@ -11,7 +11,7 @@ var quote = function (bot, sender, args, data) {
             var author = data.author;
             var form_quote = quote.replace(/[ ]/gi, "\\ ");
             var form_author = author.replace(/[ ]/gi, "\\ ");
-            var text = "$$ \huge{" + form_quote + "}\ \small {by}\ {" + form_author + "} $$";
+            var text = "$$ \huge{" + form_quote + "}\ \small{by}\ {" + form_author + "} $$";
             bot.send(text);
         });
 
