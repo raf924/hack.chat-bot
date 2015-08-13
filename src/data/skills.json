@@ -1,7 +1,14 @@
 {
     "/rCRwo": [
-            "c/c++", "Python",
-            "Qt", "JavaScript", "HTML", "CSS",
-            "SQL", "NodeJS", "Twitter Bootstrap", "PHP", "Zend Framework 2"
-        ]
+        "c/c++",
+        "Python",
+        "Qt",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "Twitter_Bootstrap",
+        "PHP",
+        "Zend_Framework_2"
+    ]
 }
