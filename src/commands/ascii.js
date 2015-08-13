@@ -6,23 +6,29 @@ var createAsciiArt = function (bot, sender, args) {
 
     var text = args.join(" ");
     var segments = [];
-    var total = 0;
     if (text.indexOf(" ") === -1) {
         segments = text.match(/.{1,15}/g);
     } else {
         var currentString = text.substr(0, 15);
         var restString = text.substr(15);
-        while (restString.length > 15) {
+        while (restString.length > 1) {
             if (currentString[currentString.length - 1] !== " " && restString[0] !== " ") {
                 var end = currentString.substr(currentString.lastIndexOf(" "));
                 restString = end + restString;
                 currentString = currentString.substr(0, currentString.lastIndexOf(" "));
             }
-            total = segments.push(currentString);
+            segments.push(currentString);
             currentString = restString.substr(0, 15);
             restString = restString.substr(15);
         }
-        total = segments.push(restString);
+        if (currentString[currentString.length - 1] !== " " && restString[0] !== " ") {
+            var end = currentString.substr(currentString.lastIndexOf(" "));
+            restString = end + restString;
+            currentString = currentString.substr(0, currentString.lastIndexOf(" "));
+        }
+        segments.push(currentString);
+        restString = restString.substr(15);
+        segments.push(restString);
     }
     text = segments.join("\n");
     ascii(text, function (err, data) {
@@ -30,7 +36,6 @@ var createAsciiArt = function (bot, sender, args) {
             bot.send("Error creating ascii art :(");
             return;
         }
-        bot.send(total);
         bot.send(data);
     });
 }
