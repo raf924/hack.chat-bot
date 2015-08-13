@@ -27,7 +27,6 @@ var createAsciiArt = function (bot, sender, args) {
             currentString = currentString.substr(0, currentString.lastIndexOf(" "));
         }
         segments.push(currentString);
-        restString = restString.substr(15);
         segments.push(restString);
     }
     text = segments.join("\n");
