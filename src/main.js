@@ -45,7 +45,7 @@ fs.readdir("./src/commands", function (err, files) {
             return;
 
         var msg = data.text;
-        if (msg[0] == "!") {
+        if (msg[0] == "µ") {
             var cmd = msg.substr(1).split(" ")[0];
             var args = msg.substr(2 + cmd.length).split(" ");
 
