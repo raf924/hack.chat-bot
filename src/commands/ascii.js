@@ -6,6 +6,7 @@ var createAsciiArt = function (bot, sender, args) {
 
     var text = args.join(" ");
     var segments = [];
+    var total = 0;
     if (text.indexOf(" ") === -1) {
         segments = text.match(/.{1,15}/g);
     } else {
@@ -17,11 +18,11 @@ var createAsciiArt = function (bot, sender, args) {
                 restString = end + restString;
                 currentString = currentString.substr(0, currentString.lastIndexOf(" "));
             }
-            segments.push(currentString);
+            total = segments.push(currentString);
             currentString = restString.substr(0, 15);
             restString = restString.substr(15);
         }
-        segments.push(restString);
+        total = segments.push(restString);
     }
     text = segments.join("\n");
     ascii(text, function (err, data) {
@@ -29,7 +30,7 @@ var createAsciiArt = function (bot, sender, args) {
             bot.send("Error creating ascii art :(");
             return;
         }
-        bot.send(text);
+        bot.send(total);
         bot.send(data);
     });
 }
