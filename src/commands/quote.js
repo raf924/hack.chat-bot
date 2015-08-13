@@ -16,3 +16,5 @@ var quote = function (bot, sender, args, data) {
         });
 
 }
+
+exports.quote = quote;
