@@ -5,7 +5,6 @@ var createAsciiArt = function (bot, sender, args) {
         return;
 
     var text = args.join(" ");
-    var i = 0;
     var segments = [];
     if (text.indexOf(" ") === -1) {
         segments = text.match(/.{1,15}/g);
@@ -13,9 +12,10 @@ var createAsciiArt = function (bot, sender, args) {
         var currentString = text.substr(0, 15);
         var restString = text.substr(15);
         while (restString.length > 15) {
-            if (restString[0] !== " ") {
+            if (currentString[currentString.length - 1] !== " " && restString[0] !== " ") {
                 var end = currentString.substr(currentString.lastIndexOf(" "));
                 restString = end + restString;
+                currentString = currentString.substr(0, currentString.lastIndexOf(" "));
             }
             segments.push(currentString);
             currentString = restString.substr(0, 15);
