@@ -9,7 +9,7 @@ var help = function (bot, sender, args) {
             cmds.push(key);
     }
     cmds = cmds.sort();
-    bot.send("$\\Large\\text{hack.chat bot by M4GNV5}$\nCommands: µ" + cmds.join(", µ"));
+    bot.send("$\\Large\\text{hack.chat bot by M4GNV5}$\nCommands: /" + cmds.join(", /"));
 }
 
 module.exports = {
