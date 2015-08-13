@@ -29,11 +29,10 @@ var createAsciiArt = function (bot, sender, args) {
             bot.send("Error creating ascii art :(");
             return;
         }
-
+        bot.send(text);
         bot.send(data);
     });
 }
-
 module.exports = {
     ascii: createAsciiArt
 };
