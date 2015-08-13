@@ -7,6 +7,6 @@ exports.yoda = function (bot, sender, args, data) {
         .header("Accept", "text/plain")
         .end(function (result) {
             var text = result.body;
-            bot.send("@" + sender " Yoda would say : " + text);
+            bot.send("@" + sender + " Yoda would say : " + text);
         });
 };
