@@ -13,7 +13,7 @@ var createAsciiArt = function (bot, sender, args) {
         var currentString = text.substr(0, 15);
         var restString = text.substr(15);
         while (restString.length < 15) {
-            if (text.substr(i + 15, 1) !== " ") {
+            if (restString[0] !== " ") {
                 var end = currentString.substr(currentString.lastIndexOf(" "));
                 restString = end + restString;
             }
