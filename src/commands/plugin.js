@@ -30,7 +30,7 @@ module.exports.plugin = function(bot, sender, args, data) {
       for (var link in links) {
         links_str += "\tFor " + link + ":" + links[link] + "\n";
       }
-      text += JSON.stringify(links_str);
+      text += links_str;
       bot.send(text);
     });
   });
