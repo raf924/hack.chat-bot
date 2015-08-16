@@ -1,28 +1,20 @@
 var request = require("request");
+var redditWrap = require('redwrap');
 
-exports.reddit = function(bot, sender, args, data)
-{
-    if(sender == bot.nick)
+exports.reddit = function(bot, sender, args, data) {
+
+  if (sender == bot.nick)
+    return;
+  var r = args[0] || "";
+  var out = [];
+  redditWrap.r(r, function(err, data, res) {
+    var posts = data.data.children;
+    for (var post of posts) {
+      out.push(post.data.title + " - http://redd.it/" + post.data.id);
+      if(out.length===args[1]||3){
         return;
-
-    var r = args[0] || "";
-    request("http://reddit.com/r/" + r + "/.json", function(err, res, data)
-    {
-        if(err)
-    	{
-            bot.send("@" + sender + " " + err.toString());
-            return;
-        }
-
-        var data = JSON.parse(data);
-        var posts = data.data.children;
-        var out = [];
-
-        for(var i = 0; i < posts.length && i < 3; i++)
-        {
-            out.push(posts[i].data.title + " - http://redd.it/" + posts[i].data.id);
-        }
-
-        bot.send(out.join("\n"));
-    });
+      }
+    }
+  });
+  bot.send(out.join("\n"));
 }
