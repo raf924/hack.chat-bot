@@ -45,7 +45,6 @@ function ChatConnection(url, nick, channel) {
 
   this.ws.on("message", function(data, flags) {
     var _data = JSON.parse(data);
-
     that.emit(_data.cmd, _data);
   });
 

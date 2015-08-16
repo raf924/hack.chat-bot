@@ -41,7 +41,7 @@ fs.readdir("./src/commands", function(err, files) {
 
     if (data.nick == config.nick)
       return;
-
+    bot.commands.greet(this, data.nick, data);
     if (this.bans.indexOf(data.nick.toLowerCase()) !== -1)
       return;
 
@@ -52,8 +52,6 @@ fs.readdir("./src/commands", function(err, files) {
 
       if (typeof this.commands[cmd] == 'function' && this.commands.hasOwnProperty(cmd))
         this.commands[cmd](this, data.nick, args, data);
-      else
-        this.send("Unknown Command: " + cmd + ". Can't you people read the damn help??");
     }
   }
 
@@ -67,5 +65,11 @@ fs.readdir("./src/commands", function(err, files) {
 
   bot.on("warn", function(data) {
     console.log("WARN : " + data.text);
+  });
+  bot.on("onlineAdd", function (data) {
+    bot.commands.greet(this,data.nick);
+  });
+  bot.on("onlineSet", function (data) {
+    bot.commands.greet(this, data.nicks);
   });
 });
