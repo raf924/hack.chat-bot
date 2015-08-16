@@ -2,6 +2,7 @@ var WebSocket = require("ws");
 var events = require("events");
 var util = require('util');
 var exec = require('child_process').exec;
+
 function ChatConnection(url, nick, channel) {
   this.url = url;
   this.nick = nick;
@@ -27,9 +28,14 @@ function ChatConnection(url, nick, channel) {
     };
     that.ws.send(JSON.stringify(joinData));
     var cwd = process.cwd();
-    process.chdir(process.env.OPENSHIFT_HOME_DIR);
-    exec("git log -1 --pretty=format:'%s'", function (err, stdout, stderr) {
-      that.send(stdout);
+    try {
+      process.chdir(process.env.OPENSHIFT_HOME_DIR);
+    }
+    catch(err){
+
+    }
+    exec("git log -1 --pretty=format:'%s'", function(err, stdout, stderr) {
+      that.send("Latest change: "+stdout);
       process.chdir(cwd);
     });
   });

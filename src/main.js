@@ -8,7 +8,7 @@ fs.readdir("./src/commands", function(err, files) {
   if (err)
     throw err;
 
-  var channel = process.env.OPENSHIFT_NODE_PORT ? config.channel : config.testchannel;
+  var channel = process.env.OPENSHIFT_NODE_PORT||"" !== "" ? config.channel : config.testchannel;
   var bot = new ChatConnection(config.url, config.nick, config.channel);
 
   bot.commands = {};
