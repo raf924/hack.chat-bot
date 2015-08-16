@@ -16,7 +16,7 @@
     "weather-js": "^1.0.2",
     "wikijs": "^0.1.1",
     "ws": "^0.7.2",
-    "unirest": "^0.4.2"
+    "unirest": "^0.4.2",
     "nodegit":"^0.4.0"
   },
   "repository": {
