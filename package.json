@@ -15,7 +15,9 @@
     "soap": "^0.9.1",
     "weather-js": "^1.0.2",
     "wikijs": "^0.1.1",
-    "ws": "^0.7.2"
+    "ws": "^0.7.2",
+    "unirest": "^0.4.2"
+    "nodegit":"^0.4.0"
   },
   "repository": {
     "type": "git",
@@ -34,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/M4GNV5/Hack.ChatBot/issues"
   },
-  "homepage": "https://github.com/M4GNV5/Hack.ChatBot",
-  "devDependencies": {
-    "unirest": "^0.4.2"
-  }
+  "homepage": "https://github.com/M4GNV5/Hack.ChatBot"
 }
