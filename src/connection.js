@@ -1,8 +1,7 @@
 var WebSocket = require("ws");
 var events = require("events");
 var util = require('util');
-var Git = require('nodegit');
-
+var exec = require('child_process').exec;
 function ChatConnection(url, nick, channel) {
   this.url = url;
   this.nick = nick;
@@ -27,12 +26,11 @@ function ChatConnection(url, nick, channel) {
       channel: channel
     };
     that.ws.send(JSON.stringify(joinData));
-    Git.Repository("nodejs").then(function(repo) {
-      return repo.getBranchCommit("master");
-    }).then(function(commit) {
-      return commit.message;
-    }).then(function(message) {
-      that.send("Latest change: " + message);
+    var cwd = process.cwd();
+    process.chdir(process.env.OPENSHIFT_HOME_DIR);
+    exec("git log -1 --pretty=format:'%s'", function (err, stdout, stderr) {
+      that.send(stdout);
+      process.chdir(cwd);
     });
   });
 
