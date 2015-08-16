@@ -1,14 +1,27 @@
 var fs = require("fs");
 var path = require("path");
+var request = require('request');
 
 var ChatConnection = require("./connection.js");
 var config = require("./config.json");
+
+var http = require('http');
+
+var server = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('Salut tout le monde !');
+});
+server.listen(8080);
+
+setInterval(function() {
+  request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
+}, 3600000);
 
 fs.readdir("./src/commands", function(err, files) {
   if (err)
     throw err;
 
-  var channel = process.env.OPENSHIFT_NODE_PORT||"" !== "" ? config.channel : config.testchannel;
+  var channel = process.env.OPENSHIFT_HOMEDIR ? config.channel : config.testchannel;
   var bot = new ChatConnection(config.url, config.nick, config.channel);
 
   bot.commands = {};
@@ -66,10 +79,10 @@ fs.readdir("./src/commands", function(err, files) {
   bot.on("warn", function(data) {
     console.log("WARN : " + data.text);
   });
-  bot.on("onlineAdd", function (data) {
-    bot.commands.greet(this,data.nick);
+  bot.on("onlineAdd", function(data) {
+    bot.commands.greet(this, data.nick);
   });
-  bot.on("onlineSet", function (data) {
+  bot.on("onlineSet", function(data) {
     bot.commands.greet(this, data.nicks);
   });
 });
