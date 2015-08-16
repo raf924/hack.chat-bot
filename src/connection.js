@@ -29,7 +29,7 @@ function ChatConnection(url, nick, channel) {
     that.ws.send(JSON.stringify(joinData));
     var cwd = process.cwd();
     try {
-      process.chdir(process.env.OPENSHIFT_HOME_DIR+"git/nodejs.git");
+      process.chdir(process.env.OPENSHIFT_HOMEDIR+"git/nodejs.git");
     }
     catch(err){
 
