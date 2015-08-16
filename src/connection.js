@@ -35,6 +35,9 @@ function ChatConnection(url, nick, channel) {
 
     }
     exec("git log -1 --pretty=format:'%s'", function(err, stdout, stderr) {
+      if(err!==null){
+        that.send("Error:"+stderr);
+      }
       that.send("Latest change: "+stdout);
       process.chdir(cwd);
     });
