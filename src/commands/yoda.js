@@ -7,7 +7,7 @@ exports.yoda = function(bot, sender, args, data) {
       client.yodaTalk({
         input: form_sentence
       }, function(err, result) {
-        if (result.indexOf(form_sentence) == -1) {
+        if (result.return.indexOf(form_sentence) == -1) {
           bot.send("@" + sender + " Yoda would say: " + result.return);
         }
       });
