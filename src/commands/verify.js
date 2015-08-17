@@ -85,7 +85,7 @@ var verify = function(bot, sender, args, data)
 		if(bot.requirePerm(sender, "verifyAdd"))
 			return;
 
-		if(typeof bot.config.tripCodes[args[1]] == 'undefined')
+		if(typeof bot.config.tripCodes[args[1]] != 'undefined')
 		{
 			delete bot.config.tripCodes[args[1]];
 			bot.send("@" + sender + " removed " + args[1] + " from the list");
