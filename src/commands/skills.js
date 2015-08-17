@@ -1,6 +1,6 @@
 module.exports.skills = function (bot, sender, args, data) {
     if (typeof args[0] == 'undefined' || args[0].trim() == "") {
-        _skills(bot, sender, data.trip, sender);
+        _skills(bot, sender, sender);
     } else if (args[0].trim() == "add") {
         var user = args[1].trim();
         var userTrip = args[2].trim();

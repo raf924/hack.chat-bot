@@ -27,11 +27,8 @@ var process_posts = function(err, data, res, bot, count) {
   for (var index in posts) {
     out.push(posts[index].data.title + " - http://redd.it/" + posts[index].data.id);
     if (index > count-2) {
-      console.log("Breaking");
       break;
     }
-    console.log("Not broken");
   }
-  //bot.send(out.join("\n"));
-  console.log(out.join("\n"));
+  bot.send(out.join("\n"));
 };
