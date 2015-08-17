@@ -24,7 +24,7 @@ exports.greet = function(bot, sender, args, data) {
   } else {
     var tripCode = bot.config.tripCodes[sender];
     var greeting = bot.config.greet[tripCode];
-    if (data && data.text && data.trip === null) {
+    if (data && data.text && data.trip == null) {
       bot.send("@" + sender + " Sorry bud, you're $ \\color{red}{not} $ valid");
     } else if (tripCode == null) {
       return;

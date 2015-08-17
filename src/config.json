@@ -1,6 +1,6 @@
 {
     "nick": "RafBot",
-    "channel": "programming",
+    "channel": "progamming",
     "testchannel":"testbot",
     "url": "wss://hack.chat/chat-ws:22"
 }
