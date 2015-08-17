@@ -14,7 +14,7 @@ var server = http.createServer(function(req, res) {
 server.on("clientError", function (e) {
   console.log(e);
 });
-server.listen(8080);
+server.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
 
 setInterval(function() {
   request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
