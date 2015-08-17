@@ -1,19 +1,19 @@
 module.exports.skills = function (bot, sender, args, data) {
     if (typeof args[0] == 'undefined' || args[0].trim() == "") {
         _skills(bot, sender, data.trip, sender);
-    } else if (args[0].trim() === "add") {
+    } else if (args[0].trim() == "add") {
         var user = args[1].trim();
         var userTrip = args[2].trim();
         args.splice(0, 3);
         _addSkill(bot, sender, args, data.trip, user, userTrip);
-    } else if (args[0].trim() === "remove") {
+    } else if (args[0].trim() == "remove") {
         var user = args[1].trim();
         var userTrip = args[2].trim();
         args.splice(0, 3);
         _removeSkills(bot, sender, args, data.trip, user, userTrip);
     } else {
         var user = args[0].trim();
-        _skills(bot, sender, data.trip, user);
+        _skills(bot, sender, user);
     }
 }
 
@@ -22,7 +22,7 @@ var _addSkill = function (bot, sender, skills, trip, user, userTrip) {
         bot.send("@" + sender + " Sorry, you can't do that. You're not valid.");
     } else if (bot.config.tripCodes[user] != userTrip) {
         bot.send("@" + sender + " Sorry, you can't do that. " + user + " is not valid.");
-    } else if (skills.length === 0) {
+    } else if (skills.length == 0) {
         bot.send("@" + sender + " Usage: /skills add <user> <tripCode> <skill> <skill> etc...");
     } else {
         for (var skill in skills) {
@@ -42,7 +42,7 @@ var _removeSkills = function (bot, sender, skills, trip, user, userTrip) {
         bot.send("@" + sender + " Sorry, you can't do that. You're not valid.");
     } else if (bot.config.tripCodes[user] != userTrip) {
         bot.send("@" + sender + " Sorry, you can't do that. " + user + " is not valid.");
-    } else if (skills.length === 0) {
+    } else if (skills.length == 0) {
         bot.send("@" + sender + " Usage: /skills remove <user> <tripCode> <skill> <skill> etc...");
     } else {
         for (var skill in skills) {
@@ -53,13 +53,14 @@ var _removeSkills = function (bot, sender, skills, trip, user, userTrip) {
     }
 }
 
-var _skills = function (bot, sender, trip, user) {
-    if (bot.config.tripCodes[user] === trip) {
+var _skills = function (bot, sender, user) {
+  var trip = bot.config.tripCodes[user];
+    if (trip) {
         var skills = bot.config.skills[trip];
-        if (skills.length > 0) {
-            bot.send("@" + sender + " user " + user + " has registered the following skills:" + skills.join(", "));
+        if (skills&&skills.length > 0) {
+            bot.send("@" + sender + " user " + user + " has registered the following skills: " + skills.join(", "));
         } else {
-            bot.send("@" + sender + " user " + user + "has not registered any skill (you'll have to ask him)");
+            bot.send("@" + sender + " user " + user + "has not registered any skill (you'll have to ask them)");
         }
     } else {
         bot.send("@" + sender + " user " + user + " is not on the list of known users");

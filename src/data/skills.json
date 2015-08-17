@@ -10,5 +10,9 @@
         "Twitter_Bootstrap",
         "PHP",
         "Zend_Framework_2"
+    ],
+    "cronuS":[
+      "JavaScript",
+      "NodeJS"
     ]
 }
