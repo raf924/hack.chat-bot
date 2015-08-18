@@ -24,7 +24,7 @@ module.exports.plugin = function(bot, sender, args, data) {
         links[browser] = asset.browser_download_url;
       }
     }
-    ghrepo.readme(function(err, data, headers) {
+    ghrepo.contents("VersionControll.MD",function(err, data, headers) {
       var text = atob(data.content);
       var links_str = "Links :\n";
       for (var link in links) {
