@@ -10,7 +10,7 @@ exports.reddit = function(bot, sender, args, data) {
   if(count == null){
     count = 3;
   }
-  if (r == "") {
+  if (r == "" || r == "reddit") {
     redditWrap.list("new", function(err, data, res) {
       process_posts(err, data, res, bot, count);
     });
