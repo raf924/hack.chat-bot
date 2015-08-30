@@ -59,7 +59,7 @@ fs.readdir("./src/commands", function(err, files) {
 
     if (data.nick == config.nick)
       return;
-    if (wait && (data.trip != null || config.tripCodes[data.nick] != null || config.tripCodes[data.nick] != data.trip))
+    if (wait && (data.trip == null || config.tripCodes[data.nick] == null || config.tripCodes[data.nick] != data.trip))
       return;
     if (this.bans.indexOf(data.nick.toLowerCase()) !== -1)
       return;
