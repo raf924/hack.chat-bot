@@ -80,7 +80,7 @@ var verify = function(bot, sender, args, data) {
     else if (typeof onlineTripcodes[args[0]] != 'undefined')
       _verify(bot, sender, onlineTripcodes[args[0]], args[0]);
     else
-      bot.send("@" + sender + " syntax is !verify <user> or !verify <tripcode> <user>");
+      bot.send("@" + sender + " syntax is /verify <user> or /verify <tripcode> <user>");
   } else //Other Verification
   {
     var user = args[1];

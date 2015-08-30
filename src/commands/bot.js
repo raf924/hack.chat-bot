@@ -16,7 +16,7 @@ var botCmd = function(bot, sender, args)
 
 	if(typeof args[0] == 'undefined')
 	{
-		bot.send("@" + sender + " usage !bot debug|perm");
+		bot.send("@" + sender + " usage /bot debug|perm");
 		return;
 	}
 

@@ -1,3 +1,5 @@
+var exec = require('child_process').exec;
+
 exports.greet = function(bot, sender, args, data) {
   if (args || data) {
     return;
@@ -20,7 +22,19 @@ exports.greet = function(bot, sender, args, data) {
         }
       }
     }
-    bot.send("Hello " + out.join(", ") + text);
+    var cwd = process.cwd();
+    try {
+      process.chdir(process.env.OPENSHIFT_HOMEDIR + "git/nodejs.git");
+    } catch (err) {
+
+    }
+    exec("git log -1 --pretty=format:'%s'", function(err, stdout, stderr) {
+      if (err !== null) {
+        console.log("Error");
+      }
+      bot.send("Hello " + out.join(", ") + text + "\n\nLatest change: " + stdout);
+      process.chdir(cwd);
+    });
   } else {
     var tripCode = bot.config.tripCodes[sender];
     var greeting = bot.config.greet[tripCode];

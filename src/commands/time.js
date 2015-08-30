@@ -26,7 +26,7 @@ var time = function(bot, sender, args)
 		{
 			if(err)
 			{
-				bot.send("Error retrieving timezone. Usage !time <location> or !time <timezone>");
+				bot.send("Error retrieving timezone. Usage /time <location> or /time <timezone>");
 				return;
 			}
 

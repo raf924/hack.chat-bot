@@ -53,7 +53,7 @@ else
 	{
 		if(typeof childPs[sender] != 'undefined')
 		{
-			bot.send("@" + sender + " only one !js command every 3 seconds");
+			bot.send("@" + sender + " only one /js command every 3 seconds");
 			return;
 		}
 
@@ -66,7 +66,7 @@ else
 		}
 		else if(args.length == 0 || args.join("").trim() == "" || args[0] == "help")
 		{
-			bot.send("Usage: !js <code>, !js pastebin <id>, !js clear, !js help");
+			bot.send("Usage: /js <code>, /js pastebin <id>, /js clear, /js help");
 		}
 		else if(args[0] == "pastebin")
 		{

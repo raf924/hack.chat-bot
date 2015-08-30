@@ -14,7 +14,7 @@ var sudo = function(bot, sender, args)
 		return;
 	}
 
-	var text = args.slice(1).join(" ") || "!help";
+	var text = args.slice(1).join(" ") || "/help";
 
 	var data = {cmd: "chat", nick: _sender, text: text}
 	bot.emit("chat", data);

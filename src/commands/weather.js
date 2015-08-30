@@ -19,7 +19,7 @@ var weatherCommand = function(bot, sender, args)
 	{
 		if(err)
 		{
-			bot.send("Error retrieving weather. Usage: !weather <location ...> [C|F]");
+			bot.send("Error retrieving weather. Usage: /weather <location ...> [C|F]");
 			return;
 		}
 

@@ -59,13 +59,13 @@ fs.readdir("./src/commands", function(err, files) {
 
     if (data.nick == config.nick)
       return;
-    if (wait && (data.trip == null || config.tripCodes[data.nick] == null || config.tripCodes[data.nick] != data.trip))
-      return;
     if (this.bans.indexOf(data.nick.toLowerCase()) !== -1)
       return;
     bot.commands.greet(this, data.nick, data);
     var msg = data.text;
     if (msg[0] == "/") {
+      if (wait && (typeof data.trip == 'undefined' || typeof bot.config.tripCodes[data.nick] == 'undefined' || bot.config.tripCodes[data.nick] != data.trip))
+        return;
       wait = true;
       setTimeout(function() {
         wait = false;
