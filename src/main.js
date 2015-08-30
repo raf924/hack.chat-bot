@@ -18,7 +18,7 @@ server.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP
 
 setInterval(function() {
   request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
-}, 3600000);
+}, 1000*60*10);
 
 fs.readdir("./src/commands", function(err, files) {
   if (err)
