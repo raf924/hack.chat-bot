@@ -2,6 +2,8 @@ var fs = require("fs");
 var path = require("path");
 var request = require('request');
 
+var wait = false;
+
 var ChatConnection = require("./connection.js");
 var config = require("./config.json");
 
@@ -11,14 +13,14 @@ var server = http.createServer(function(req, res) {
   res.writeHead(200);
   res.end('Salut tout le monde !');
 });
-server.on("clientError", function (e) {
+server.on("clientError", function(e) {
   console.log(e);
 });
 server.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
 
 setInterval(function() {
   request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
-}, 1000*60*10);
+}, 1000 * 60 * 10);
 
 fs.readdir("./src/commands", function(err, files) {
   if (err)
@@ -57,12 +59,17 @@ fs.readdir("./src/commands", function(err, files) {
 
     if (data.nick == config.nick)
       return;
-    bot.commands.greet(this, data.nick, data);
+    if (wait && (data.trip != null || config.tripCodes[data.nick] != null || config.tripCodes[data.nick] != data.trip))
+      return;
     if (this.bans.indexOf(data.nick.toLowerCase()) !== -1)
       return;
-
+    bot.commands.greet(this, data.nick, data);
     var msg = data.text;
     if (msg[0] == "/") {
+      wait = true;
+      setTimeout(function() {
+        wait = false;
+      }, 1000 * 3);
       var cmd = msg.substr(1).split(" ")[0];
       var args = msg.substr(2 + cmd.length).split(" ");
 
