@@ -20,7 +20,7 @@ server.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP
 
 setInterval(function() {
   request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
-}, 1000 * 60 * 10);
+}, 1000 * 60 * 3);
 
 fs.readdir("./src/commands", function(err, files) {
   if (err)
@@ -66,10 +66,12 @@ fs.readdir("./src/commands", function(err, files) {
     if (msg[0] == "/") {
       if (wait && (typeof data.trip == 'undefined' || typeof bot.config.tripCodes[data.nick] == 'undefined' || bot.config.tripCodes[data.nick] != data.trip))
         return;
-      wait = true;
-      setTimeout(function() {
-        wait = false;
-      }, 1000 * 3);
+      else if (typeof data.trip == 'undefined' || typeof bot.config.tripCodes[data.nick] == 'undefined' || bot.config.tripCodes[data.nick] != data.trip) {
+        wait = true;
+        setTimeout(function() {
+          wait = false;
+        }, 1000 * 3);
+      }
       var cmd = msg.substr(1).split(" ")[0];
       var args = msg.substr(2 + cmd.length).split(" ");
 
