@@ -39,12 +39,10 @@ exports.greet = function(bot, sender, args, data) {
     var tripCode = bot.config.tripCodes[sender];
     var greeting = bot.config.greet[tripCode];
     if (data && data.text && data.trip == null) {
-      bot.send("@" + sender + " Sorry bud, you're $ \\color{red}{not} $ valid");
+      bot.send("@" + sender + " Sorry bud, you're $ \\color{red}{not} $ special");
     } else if (tripCode == null) {
       return;
-    } else if (greeting == null) {
-      bot.send("@" + sender + " Hello you.");
-    } else {
+    } else if (greeting != null) {
       bot.send("@" + sender + " " + greeting);
     }
   }
