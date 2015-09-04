@@ -6,7 +6,7 @@ var wait = false;
 
 var ChatConnection = require("./connection.js");
 var config = require("./config.json");
-var keep_alive = require('./keep-alive.js');
+var keep_alive = require('./keep_alive.js');
 
 var http = require('http');
 
