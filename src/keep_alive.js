@@ -2,9 +2,10 @@ var ws = require('ws');
 
 var WebSocketServer = ws.Server,
   wss = new WebSocketServer({
-    port: 8080
+    port: process.env.OPENSHIFT_NODEJS_PORT
   });
-var socket = new ws("ws://" + process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT);
+
+var socket = new ws("http://" + process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT);
 
 socket.on("open", function() {
   setInterval(function() {
