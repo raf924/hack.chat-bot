@@ -1,9 +1,8 @@
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port = process.env.OPENSHIFT_NODEJS_PORT;
 
-var WebSocket = require("ws");
-var WebSocketServer = WebSocket.Server
 var http = require('http');
+var request = require('request');
 
 var server = http.createServer(function(request, response) {
   console.log((new Date()) + ' Received request for ' + request.url);
@@ -18,21 +17,6 @@ server.listen(port, ipaddress, function() {
   console.log((new Date()) + ' Server is listening on port 8080');
 });
 
-var wss = new WebSocketServer({
-  server: server,
-  autoAcceptConnections: false
-});
-wss.on('connection', function(ws) {
-  ws.on('message', function(message) {
-    ws.send("Received: " + message);
-  });
-  ws.send('Welcome!');
-});
-
-
-var ws = WebSocket("http://nodejs-raf924.rhcloud.com:8000");
-ws.on("open", function () {
-  setInterval(function () {
-    ws.send("ping");
-  }, 1000 * 50);
-});
+setInterval(function() {
+  request("http://nodejs-raf924.rhcloud.com/", function(err, data, res) {});
+}, 1000 * 50);
