@@ -6,6 +6,7 @@ var wait = false;
 
 var ChatConnection = require("./connection.js");
 var config = require("./config.json");
+var keep_alive = require('./keep-alive.js');
 
 var http = require('http');
 
@@ -16,11 +17,6 @@ var server = http.createServer(function(req, res) {
 server.on("clientError", function(e) {
   console.log(e);
 });
-server.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
-
-setInterval(function() {
-  request(process.env.OPENSHIFT_NODEJS_IP + ":" + process.env.OPENSHIFT_NODEJS_PORT, function(err, res, data) {});
-}, 1000 * 60 * 3);
 
 fs.readdir("./src/commands", function(err, files) {
   if (err)
